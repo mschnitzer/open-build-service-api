@@ -17,6 +17,8 @@ module OpenBuildServiceAPI
         @revision = data.xpath('//about/revision').text
         @last_deployment = DateTime.parse(data.xpath('//about/last_deployment').text)
         @commit = data.xpath('//about/commit').text
+
+        true
       end
     end
   end
