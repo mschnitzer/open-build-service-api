@@ -41,8 +41,9 @@ module OpenBuildServiceAPI
 
         response = request.request(request_method)
 
-        raise InternalServerError.new(response.body) if response.is_a?(Net::HTTPInternalServerError)
-        raise AuthenticationError.new("Authentication failed. Please check your credentials.") if response.is_a?(Net::HTTPUnauthorized)
+        raise InternalServerError.new(response) if response.is_a?(Net::HTTPInternalServerError)
+        raise NotFoundError.new(response) if response.is_a?(Net::HTTPNotFound)
+        raise AuthenticationError.new(response, "Authentication failed. Please check your credentials.") if response.is_a?(Net::HTTPUnauthorized)
 
         return response
       rescue Errno::ECONNREFUSED, SocketError, Net::OpenTimeout => err
