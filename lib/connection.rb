@@ -34,6 +34,8 @@ module OpenBuildServiceAPI
         end
 
         request_method['Accept'] = 'application/xml'
+        request_method['User-Agent'] = "open-build-service-api (Ruby Gem Version: #{OpenBuildServiceAPI::VERSION})"
+
         request_method.basic_auth(@username, @password)
         request_method.body = request_body if request_body
 
