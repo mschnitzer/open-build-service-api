@@ -15,8 +15,13 @@ module OpenBuildServiceAPI
         @title = data.xpath('//about/title').text
         @description = data.xpath('//about/description').text
         @revision = data.xpath('//about/revision').text
-        @last_deployment = DateTime.parse(data.xpath('//about/last_deployment').text)
         @commit = data.xpath('//about/commit').text
+
+        begin
+          @last_deployment = DateTime.parse(data.xpath('//about/last_deployment').text)
+        rescue ArgumentError
+          @last_deployment = nil
+        end
 
         true
       end
