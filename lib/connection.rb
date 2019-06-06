@@ -55,6 +55,11 @@ module OpenBuildServiceAPI
       @ref_about = API::About.new(self)
     end
 
+    def projects
+      return @ref_projects if @ref_projects
+      @ref_projects = API::Projects.new(self)
+    end
+
     private
 
     def format_params(params)
