@@ -6,6 +6,8 @@ module OpenBuildServiceAPI
       end
 
       def create(name, meta = nil)
+        raise ProjectAlreadyExistsError.new("Project name '#{name}' has already been taken.") if exists?(name)
+
         meta = meta ? meta : meta_for_new_project(name)
 
         begin
@@ -22,6 +24,10 @@ module OpenBuildServiceAPI
       def list
         projects = Nokogiri::XML(@connection.send_request(:get, '/source').body)
         projects.xpath('//entry').map {|project| Project.new(projects: self, name: project.attr('name')) }
+      end
+
+      def exists?(name)
+        !!find(name)
       end
 
       def find(name)
