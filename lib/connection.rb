@@ -43,6 +43,7 @@ module OpenBuildServiceAPI
 
         raise InternalServerError.new(response) if response.is_a?(Net::HTTPInternalServerError)
         raise NotFoundError.new(response) if response.is_a?(Net::HTTPNotFound)
+        raise PermissionDeniedError.new(response) if response.is_a?(Net::HTTPForbidden)
         raise AuthenticationError.new(response, "Authentication failed. Please check your credentials.") if response.is_a?(Net::HTTPUnauthorized)
 
         return response
