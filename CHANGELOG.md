@@ -1,3 +1,9 @@
+## Version: 0.1.0 (alpha)
+
+- Exception `RemoteAPIError` does now store the `error_code` and `error_summary` if it is available
+- Adds a method to allow creation of Open Build Service projects
+- Adds `exists?` method to `Projects module in order to check whether a project exists or not
+
 ## Version: 0.0.2 (alpha)
 
 - Adds `Connection` module to establish a connection with a Build Service instance
