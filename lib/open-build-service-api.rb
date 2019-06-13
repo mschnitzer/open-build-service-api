@@ -11,4 +11,5 @@ require_relative 'api/about'
 require_relative 'api/projects'
 
 # Models
+require_relative 'models/package'
 require_relative 'models/project'

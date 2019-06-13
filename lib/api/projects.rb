@@ -17,13 +17,13 @@ module OpenBuildServiceAPI
           raise
         end
 
-        return Project.new(projects: self, name: name) if response.is_a?(Net::HTTPOK)
+        return Project.new(projects: self, connection: @connection, name: name) if response.is_a?(Net::HTTPOK)
         raise ProjectCreationFailedError.new("could not create project. API responded with '#{response.code}': #{response.body}")
       end
 
       def list
         projects = Nokogiri::XML(@connection.send_request(:get, '/source').body)
-        projects.xpath('//entry').map {|project| Project.new(projects: self, name: project.attr('name')) }
+        projects.xpath('//entry').map {|project| Project.new(projects: self, connection: @connection, name: project.attr('name')) }
       end
 
       def exists?(name)
@@ -35,7 +35,7 @@ module OpenBuildServiceAPI
           project_data = Nokogiri::XML(@connection.send_request(:get, "/source/#{CGI.escape(name)}").body)
           packages = project_data.xpath('//entry').map { |package| package.attr('name') }
 
-          Project.new(projects: self, name: name, packages: packages)
+          Project.new(projects: self, name: name, packages: packages, connection: @connection)
         rescue NotFoundError
         end
       end
