@@ -12,6 +12,17 @@ module OpenBuildServiceAPI
       @name
     end
 
+    def delete!(message=nil)
+      begin
+        @connection.send_request(:delete, "/source/#{CGI.escape(@name)}", comment: message)
+      rescue RequestError => err
+        raise ProjectDeletionPermissionError.new("No permission to delete project '#{@name}'.") if err.error_code == 'delete_project_no_permission'
+        raise
+      end
+
+      true
+    end
+
     def packages
       return @cached_packages if @cached_packages && !@package_reload
       @package_reload = false

@@ -4,6 +4,7 @@
 - Added a method to allow creation of Open Build Service projects
 - Added `exists?` method to `Projects module in order to check whether a project exists or not
 - Added a `branch_package` method to Project model to allow branching of source packages
+- Added a `delete!` method to Project model to allow deletion of source projects
 
 ## Version: 0.0.2 (alpha)
 

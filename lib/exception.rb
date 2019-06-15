@@ -34,6 +34,7 @@ module OpenBuildServiceAPI
   class ProjectNotFoundError < APIError; end
   class ProjectCreationPermissionError < APIError; end
   class ProjectCreationFailedError < APIError; end
+  class ProjectDeletionPermissionError < APIError; end
   class ProjectAlreadyExistsError < APIError; end
   class PackageAlreadyExistsError < APIError; end
   class TargetProjectPermissionError < APIError; end

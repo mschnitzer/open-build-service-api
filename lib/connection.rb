@@ -37,6 +37,8 @@ module OpenBuildServiceAPI
           request_method = Net::HTTP::Put.new(uri)
         elsif method.to_s.downcase == 'get'
           request_method = Net::HTTP::Get.new(uri)
+        elsif method.to_s.downcase == 'delete'
+          request_method = Net::HTTP::Delete.new(uri)
         end
 
         request_method['Accept'] = 'application/xml'
