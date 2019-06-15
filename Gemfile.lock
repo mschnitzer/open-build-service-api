@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    byebug (11.0.1)
+    date (2.0.0)
     mini_portile2 (2.4.0)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -9,6 +11,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug (>= 11.0.1)
+  date (>= 2.0.0)
   nokogiri (>= 1.10.0)
 
 BUNDLED WITH
