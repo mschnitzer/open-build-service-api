@@ -45,7 +45,7 @@ module OpenBuildServiceAPI
         raise AuthenticationError.new(response, "Authentication failed. Please check your credentials.") if response.is_a?(Net::HTTPUnauthorized)
 
         code = response.code.to_i
-        raise RequestError.new(response) if code < 200 || code > 299
+        raise RequestError.new(response) if code >= 400
 
         return response
       rescue Errno::ECONNREFUSED, SocketError, Net::OpenTimeout => err
