@@ -3,7 +3,7 @@ require_relative 'lib/version'
 Gem::Specification.new do |s|
   s.name        = 'open-build-service-api'
   s.version     = OpenBuildServiceAPI::VERSION
-  s.date        = '2019-06-07'
+  s.date        = OpenBuildServiceAPI::RELEASE_DATE
   s.summary     = 'Library for the Open Build Service API'
   s.description = 'The Open Build Service API wrapped into a Ruby gem.'
   s.authors     = ['Manuel Schnitzer']
