@@ -1,8 +1,9 @@
 ## Version: 0.1.0 (alpha)
 
 - Exception `RemoteAPIError` does now store the `error_code` and `error_summary` if it is available
-- Adds a method to allow creation of Open Build Service projects
-- Adds `exists?` method to `Projects module in order to check whether a project exists or not
+- Added a method to allow creation of Open Build Service projects
+- Added `exists?` method to `Projects module in order to check whether a project exists or not
+- Added a `branch_package` method to Project model to allow branching of source packages
 
 ## Version: 0.0.2 (alpha)
 
