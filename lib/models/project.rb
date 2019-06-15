@@ -25,6 +25,23 @@ module OpenBuildServiceAPI
       @cached_packages
     end
 
+    def branch_package(source_project, source_package, package_name_after_branch=nil)
+      params = { cmd: 'branch', target_project: name }
+      params[:target_package] = package_name_after_branch ? package_name_after_branch : source_package
+
+      begin
+        response = @connection.send_request(:post, "/source/#{CGI.escape(source_project.to_s)}/#{CGI.escape(source_package.to_s)}", params)
+        response_xml = Nokogiri::XML(response.body)
+
+        @package_reload = true
+        Package.new(name: response_xml.xpath('//data[@name="targetpackage"]')[0].text, connection: @connection, project: self)
+      rescue RequestError => err
+        raise PackageAlreadyExistsError.new("Package '#{params[:target_package]}' does already exist " \
+          "in project '#{@name}'.") if err.error_code == 'double_branch_package'
+        raise
+      end
+    end
+
     def reload!
       @package_reload = true
     end
