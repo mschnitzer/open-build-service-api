@@ -27,8 +27,7 @@ module OpenBuildServiceAPI
 
   class InternalServerError < RemoteAPIError; end
   class AuthenticationError < RemoteAPIError; end
-  class NotFoundError < RemoteAPIError; end
-  class PermissionDeniedError < RemoteAPIError; end
+  class RequestError < RemoteAPIError; end
 
   # remote API errors
   class APIError < Exception; end

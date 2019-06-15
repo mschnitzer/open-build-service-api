@@ -42,9 +42,10 @@ module OpenBuildServiceAPI
         response = request.request(request_method)
 
         raise InternalServerError.new(response) if response.is_a?(Net::HTTPInternalServerError)
-        raise NotFoundError.new(response) if response.is_a?(Net::HTTPNotFound)
-        raise PermissionDeniedError.new(response) if response.is_a?(Net::HTTPForbidden)
         raise AuthenticationError.new(response, "Authentication failed. Please check your credentials.") if response.is_a?(Net::HTTPUnauthorized)
+
+        code = response.code.to_i
+        raise RequestError.new(response) if code < 200 || code > 299
 
         return response
       rescue Errno::ECONNREFUSED, SocketError, Net::OpenTimeout => err
