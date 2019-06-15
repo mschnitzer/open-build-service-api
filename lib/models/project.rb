@@ -37,7 +37,9 @@ module OpenBuildServiceAPI
         Package.new(name: response_xml.xpath('//data[@name="targetpackage"]')[0].text, connection: @connection, project: self)
       rescue RequestError => err
         raise PackageAlreadyExistsError.new("Package '#{params[:target_package]}' does already exist " \
-          "in project '#{@name}'.") if err.error_code == 'double_branch_package'
+                                            "in project '#{@name}'.") if err.error_code == 'double_branch_package'
+        raise TargetProjectPermissionError.new("Branching to project '#{@name}' is not possible: No " \
+                                               "access in target project.") if err.error_code == 'cmd_execution_no_permission'
         raise
       end
     end

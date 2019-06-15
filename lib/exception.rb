@@ -36,6 +36,7 @@ module OpenBuildServiceAPI
   class ProjectCreationFailedError < APIError; end
   class ProjectAlreadyExistsError < APIError; end
   class PackageAlreadyExistsError < APIError; end
+  class TargetProjectPermissionError < APIError; end
 
   # library specific exceptions
   class GeneralError < Exception; end
