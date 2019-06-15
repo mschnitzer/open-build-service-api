@@ -13,6 +13,12 @@ module OpenBuildServiceAPI
       send_request(:get, '/')
     end
 
+    def inspect
+      inspected_object = super
+      inspected_object.gsub!(/\@username="([^\"]+)"/, '@username="..."')
+      inspected_object.gsub(/\@password="([^\"]+)"/, '@password="..."')
+    end
+
     def send_request(method, path, params = {})
       request_body = params[:request_body] if params[:request_body]
       params.delete(:request_body)
