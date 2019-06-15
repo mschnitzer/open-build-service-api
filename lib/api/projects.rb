@@ -12,7 +12,7 @@ module OpenBuildServiceAPI
 
         begin
           response = @connection.send_request(:put, "/source/#{CGI.escape(name)}/_meta", request_body: meta)
-        rescue PermissionDeniedError => err
+        rescue RequestError => err
           raise ProjectCreationPermissionError.new(err.error_summary) if err.error_code == 'create_project_no_permission'
           raise
         end
@@ -36,7 +36,9 @@ module OpenBuildServiceAPI
           packages = project_data.xpath('//entry').map { |package| package.attr('name') }
 
           Project.new(projects: self, name: name, packages: packages, connection: @connection)
-        rescue NotFoundError
+        rescue RequestError => err
+          return if err.error_code == 'unknown_project'
+          raise
         end
       end
 
