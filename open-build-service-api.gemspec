@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri', '~> 1.10', '>= 1.10.0'
 
   s.add_development_dependency 'byebug', '~> 11.0', '>= 11.0.1'
+  s.add_development_dependency 'rspec', '~> 3.8', '>= 3.8.0'
 end
