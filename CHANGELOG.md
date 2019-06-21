@@ -1,3 +1,7 @@
+## Version: 0.2.0 (alpha)
+
+- Added `#public_key` method to `Project` model to retrieve a project's public key
+
 ## Version: 0.1.0 (alpha)
 
 - Exception `RemoteAPIError` does now store the `error_code` and `error_summary` if it is available

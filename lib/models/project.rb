@@ -55,8 +55,17 @@ module OpenBuildServiceAPI
       end
     end
 
+    def public_key
+      @cached_public_key if @cached_public_key && !@public_key_reload
+      @public_key_reload = false
+
+      response = @connection.send_request(:get, "/source/#{CGI.escape(@name)}/_pubkey")
+      response.body
+    end
+
     def reload!
       @package_reload = true
+      @public_key_reload = true
     end
   end
 end
