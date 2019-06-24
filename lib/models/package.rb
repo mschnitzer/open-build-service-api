@@ -36,6 +36,10 @@ module OpenBuildServiceAPI
       end
     end
 
+    def inspect
+      "#<#{self.class.name}:#{"0x00%x" % (object_id << 1)} @name=\"#{@name}\", @project=\"#{@project.name}\">"
+    end
+
     def rebuild!(repository=nil, arch=nil)
       @connection.send_request(:post, "/build/#{CGI.escape(@project.name)}", cmd: :rebuild, package: @name, repository: repository, arch: arch)
       true
