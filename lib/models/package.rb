@@ -12,5 +12,17 @@ module OpenBuildServiceAPI
     def to_s
       @name
     end
+
+    def delete!(message=nil)
+      begin
+        @connection.send_request(:delete, "/source/#{CGI.escape(@project.name)}/#{CGI.escape(@name)}", comment: message)
+      rescue RequestError => err
+        raise PackageDeletionPermissionError.new("No permission to delete package '#{@name}' in project " \
+                                                 "'#{@project.name}'.") if err.error_code == 'delete_package_no_permission'
+        raise
+      end
+
+      true
+    end
   end
 end
