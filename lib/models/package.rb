@@ -13,6 +13,11 @@ module OpenBuildServiceAPI
       @name
     end
 
+    def rebuild!(repository=nil, arch=nil)
+      @connection.send_request(:post, "/build/#{CGI.escape(@project.name)}", cmd: :rebuild, package: @name, repository: repository, arch: arch)
+      true
+    end
+
     def delete!(message=nil)
       begin
         @connection.send_request(:delete, "/source/#{CGI.escape(@project.name)}/#{CGI.escape(@name)}", comment: message)
