@@ -13,6 +13,19 @@ module OpenBuildServiceAPI
       @name
     end
 
+    def meta(opts = {})
+      if !@cached_meta || @meta_reload
+        @cached_meta = @connection.send_request(:get, "/source/#{CGI.escape(@project.name)}/#{CGI.escape(@name)}/_meta").body
+        @meta_reload = false
+      end
+
+      if opts[:no_parse]
+        @cached_meta
+      else
+        Nokogiri::XML(@cached_meta)
+      end
+    end
+
     def rebuild!(repository=nil, arch=nil)
       @connection.send_request(:post, "/build/#{CGI.escape(@project.name)}", cmd: :rebuild, package: @name, repository: repository, arch: arch)
       true

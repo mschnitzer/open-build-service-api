@@ -4,6 +4,8 @@
 - Added `#delete!` method to `Package` model to allow deletion of packages
 - Added 'Collections' system to act on a dataset like an Array and use API methods as well
 - Added `#rebuild!` method to `Package` model to allow rebuilding of packages
+- Added `#meta` method to `Project` model to obtain a project's meta config file
+- Added `#meta` method to `Package` model to obtain the meta definition of a package
 
 ## Version: 0.1.0 (alpha)
 
