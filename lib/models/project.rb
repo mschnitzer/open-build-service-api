@@ -26,14 +26,15 @@ module OpenBuildServiceAPI
     def packages
       return @cached_packages if @cached_packages && !@package_reload
       @package_reload = false
-      @cached_packages = []
+
+      collection_data = []
 
       packages = Nokogiri::XML(@connection.send_request(:get, "/source/#{CGI.escape(@name)}").body)
       packages.xpath('//entry').each do |package|
-        @cached_packages << Package.new(name: package.attr('name'), connection: @connection, project: self)
+        collection_data << Package.new(name: package.attr('name'), connection: @connection, project: self)
       end
 
-      @cached_packages
+      @cached_packages = PackagesCollection.new(connection: @connection, project: self, data: collection_data)
     end
 
     def branch_package(source_project, source_package, package_name_after_branch=nil)

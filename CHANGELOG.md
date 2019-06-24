@@ -2,6 +2,7 @@
 
 - Added `#public_key` method to `Project` model to retrieve a project's public key
 - Added `#delete!` method to `Package` model to allow deletion of packages
+- Added 'Collections' system to act on a dataset like an Array and use API methods as well
 
 ## Version: 0.1.0 (alpha)
 
