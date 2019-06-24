@@ -82,11 +82,13 @@ module OpenBuildServiceAPI
 
         if values[index].is_a?(Array)
           values[index].each do |array_value|
-            formatted_params += '&' if formatted_params[-1] != '&' && formatted_params.length > 0
-            formatted_params += "#{CGI.escape(param.to_s)}[]=#{CGI.escape(array_value.to_s)}"
+            if array_value
+              formatted_params += '&' if formatted_params[-1] != '&' && formatted_params.length > 0
+              formatted_params += "#{CGI.escape(param.to_s)}[]=#{CGI.escape(array_value.to_s)}"
+            end
           end
         else
-          formatted_params += "#{CGI.escape(param.to_s)}=#{CGI.escape(values[index].to_s)}"
+          formatted_params += "#{CGI.escape(param.to_s)}=#{CGI.escape(values[index].to_s)}" if values[index]
         end
       end
 
