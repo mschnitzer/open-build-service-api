@@ -42,5 +42,9 @@ module OpenBuildServiceAPI
 
       true
     end
+
+    def reload!
+      @meta_reload = true
+    end
   end
 end
