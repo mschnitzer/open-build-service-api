@@ -1,6 +1,7 @@
 ## Version: 0.2.0 (alpha)
 
 - Added `#public_key` method to `Project` model to retrieve a project's public key
+- Added `#delete!` method to `Package` model to allow deletion of packages
 
 ## Version: 0.1.0 (alpha)
 
