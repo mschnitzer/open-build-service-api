@@ -47,6 +47,7 @@ module OpenBuildServiceAPI
         request_method.basic_auth(@username, @password)
         request_method.body = request_body if request_body
 
+        puts "[DEBUG] #{uri.to_s}" if ENV['OBS_API_LIBRARY_DEBUG']
         response = request.request(request_method)
 
         raise InternalServerError.new(response) if response.is_a?(Net::HTTPInternalServerError)
