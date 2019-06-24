@@ -13,6 +13,16 @@ module OpenBuildServiceAPI
       @name
     end
 
+    def title
+      title = meta.xpath('//package/title')
+      title.empty? ? nil : title[0].text
+    end
+
+    def description
+      description = meta.xpath('//package/description')
+      description.empty? ? nil : description[0].text
+    end
+
     def meta(opts = {})
       if !@cached_meta || @meta_reload
         @cached_meta = @connection.send_request(:get, "/source/#{CGI.escape(@project.name)}/#{CGI.escape(@name)}/_meta").body

@@ -7,6 +7,8 @@
 - Added `#meta` method to `Project` model to obtain a project's meta config file
 - Added `#meta` method to `Package` model to obtain the meta definition of a package
 - Added `#reload!` method to `Package` model to reload the cached data of a package
+- Added `#title` method to `Package` model to obtain the title of a package
+- Added `#description` method to `Package` model to obtain the description of a package
 
 ## Version: 0.1.0 (alpha)
 
