@@ -3,7 +3,7 @@ module OpenBuildServiceAPI
     include Enumerable
     extend Forwardable
 
-    def_delegators :@data, :each, :count
+    def_delegators :@data, :each, :count, :empty?
 
     def inspect
       count = 1
