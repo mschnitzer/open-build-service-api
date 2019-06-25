@@ -21,6 +21,7 @@ module OpenBuildServiceAPI
     end
 
     def title=(value)
+      @dirty = true
       @title_updated = value
     end
 
@@ -32,6 +33,7 @@ module OpenBuildServiceAPI
     end
 
     def description=(value)
+      @dirty = true
       @description_updated = value
     end
 
@@ -62,16 +64,25 @@ module OpenBuildServiceAPI
       true
     end
 
+    def dirty?
+      !!@dirty
+    end
+
     def save!
+      return false unless @dirty
+
       @meta_reload = true
       meta_xml = meta
 
       meta_xml.xpath('//package/title')[0].content = @title_updated if @title_updated
       meta_xml.xpath('//package/description')[0].content = @description_updated if @description_updated
 
+      # update meta definition
       @connection.send_request(:put, "/source/#{CGI.escape(@project.name)}/#{CGI.escape(@name)}/_meta", request_body: meta_xml.to_xml)
 
       # reset updated values
+      @dirty = false
+
       @title_updated = nil
       @description_updated = nil
 
