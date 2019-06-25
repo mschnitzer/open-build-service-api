@@ -1,4 +1,4 @@
 module OpenBuildServiceAPI
-  VERSION = '0.2.0'
-  RELEASE_DATE = '2019-06-24'
+  VERSION = '0.3.0'
+  RELEASE_DATE = '2019-06-25'
 end
