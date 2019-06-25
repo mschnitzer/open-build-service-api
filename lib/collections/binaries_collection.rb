@@ -9,5 +9,10 @@ module OpenBuildServiceAPI
       @package = params[:package]
       @data = params[:data] ? params[:data] : []
     end
+
+    def delete_all!
+      @connection.send_request(:post, "/build/#{CGI.escape(@package.project.name)}", cmd: :wipe, package: @package.name)
+      true
+    end
   end
 end
