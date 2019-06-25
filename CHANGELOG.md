@@ -1,3 +1,7 @@
+## Version: 0.4.0 (alpha)
+
+- Introduced an `AbstractModel` class where all models inherit from
+
 ## Version: 0.3.0 (alpha)
 
 - Added `#rebuild_failed!` method to `Package` model to rebuild only failed builds

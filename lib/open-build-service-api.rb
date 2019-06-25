@@ -24,6 +24,7 @@ require_relative 'collections/packages_collection'
 require_relative 'collections/sources_collection'
 
 # Models
+require_relative 'models/abstract_model'
 require_relative 'models/binary'
 require_relative 'models/package'
 require_relative 'models/project'

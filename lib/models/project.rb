@@ -1,5 +1,5 @@
 module OpenBuildServiceAPI
-  class Project
+  class Project < AbstractModel
     attr_accessor :name, :projects
 
     def initialize(params = {})

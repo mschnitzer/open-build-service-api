@@ -1,5 +1,5 @@
 module OpenBuildServiceAPI
-  class Binary
+  class Binary < AbstractModel
     attr_reader :name, :size, :created_at, :repository, :architecture, :local_file_path, :local_path
     attr_accessor :package
 

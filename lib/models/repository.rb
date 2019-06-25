@@ -1,5 +1,5 @@
 module OpenBuildServiceAPI
-  class Repository
+  class Repository < AbstractModel
     attr_accessor :name, :project
 
     def initialize(params = {})

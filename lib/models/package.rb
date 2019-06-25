@@ -1,5 +1,5 @@
 module OpenBuildServiceAPI
-  class Package
+  class Package < AbstractModel
     attr_reader :name
     attr_accessor :project
 

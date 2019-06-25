@@ -1,5 +1,5 @@
 module OpenBuildServiceAPI
-  class Source
+  class Source < AbstractModel
     attr_reader :name, :md5_hash, :size, :updated_at
     attr_accessor :package
 
