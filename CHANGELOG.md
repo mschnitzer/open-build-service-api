@@ -1,6 +1,7 @@
 ## Version: 0.3.0 (alpha)
 
 - Added `#rebuild_failed!` method to `Package` model to rebuild only failed builds
+- Added setter methods for package title and description
 
 ## Version: 0.2.0 (alpha)
 
