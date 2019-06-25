@@ -1,5 +1,6 @@
 require 'cgi'
 require 'date'
+require 'filesize'
 require 'forwardable'
 require 'net/http'
 require 'nokogiri'
@@ -10,6 +11,9 @@ require_relative 'connection'
 # OBS API
 require_relative 'api/about'
 require_relative 'api/projects'
+
+# Helpers
+require_relative 'helpers/binary_helper'
 
 # Collections
 require_relative 'collections/abstract_collection'

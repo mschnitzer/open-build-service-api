@@ -50,6 +50,41 @@ module OpenBuildServiceAPI
       end
     end
 
+    def binaries
+      result = []
+
+      @project.repositories.each do |repository|
+        binary_data = { repository: repository, binaries: [] }
+
+        repository.architectures.each do |arch|
+          begin
+            response = @connection.send_request(:get, "/build/#{CGI.escape(@project.name)}/#{CGI.escape(repository.to_s)}/#{CGI.escape(arch)}/#{CGI.escape(@name)}")
+            response_xml = Nokogiri::XML(response.body)
+
+            response_xml.xpath('//binarylist/binary').each do |binary|
+              file_name = binary.attr('filename')
+              file_size = Filesize.from(binary.attr('size'))
+              created_at = Time.at(binary.attr('mtime').to_i)
+
+              if BinaryHelper.binary_file?(file_name)
+                binary_data[:binaries] << { file_name: file_name, file_size: file_size, arch: arch, created_at: created_at }
+              end
+            end
+          rescue RequestError => err
+            # in case the repository does no longer exist, we can ignore it. there are no binaries anyways
+            next if err.error_code == '404' && err.error_summary =~ /has no repository/
+
+            # raise any other error
+            raise
+          end
+        end
+
+        result << binary_data unless binary_data[:binaries].empty?
+      end
+
+      result
+    end
+
     def inspect
       "#<#{self.class.name}:#{"0x00%x" % (object_id << 1)} @name=\"#{@name}\", @project=\"#{@project.name}\">"
     end

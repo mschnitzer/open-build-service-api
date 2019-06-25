@@ -4,6 +4,7 @@
 - Added setter methods for package title and description
 - Added `#dirty?` method to `Package` model to identify if a package needs to be saved
 - Added `#repositories` method to `Project` model to list all build repositories
+- Added `#binaries` method to `Package` model to list all built binaries
 
 ## Version: 0.2.0 (alpha)
 
