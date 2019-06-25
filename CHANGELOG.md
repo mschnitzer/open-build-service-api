@@ -1,6 +1,7 @@
 ## Version: 0.4.0 (alpha)
 
 - Introduced an `AbstractModel` class where all models inherit from
+- Added `#delete!` method to `Source` model to allow deletion of sources
 
 ## Version: 0.3.0 (alpha)
 

@@ -15,5 +15,10 @@ module OpenBuildServiceAPI
     def to_s
       @name
     end
+
+    def delete!
+      @connection.send_request(:delete, "/source/#{CGI.escape(@package.project.name)}/#{CGI.escape(@package.name)}/#{CGI.escape(@name)}")
+      true
+    end
   end
 end
