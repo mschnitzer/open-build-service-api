@@ -64,6 +64,26 @@ module OpenBuildServiceAPI
       end
     end
 
+    def sources
+      return @cached_sources if @cached_sources && !@sources_reload
+      collection_data = []
+
+      response_xml = Nokogiri::XML(@connection.send_request(:get, "/source/#{CGI.escape(@project.name)}/#{CGI.escape(@name)}").body)
+      response_xml.xpath('//entry').each do |file|
+        collection_data << Source.new(
+          name:       file.attr('name'),
+          md5_hash:   file.attr('md5'),
+          size:       file.attr('size'),
+          updated_at: file.attr('mtime').to_i,
+          package:    self,
+          connection: @connection
+        )
+      end
+
+      @sources_reload = false
+      @cached_sources = SourcesCollection.new(data: collection_data, package: self, connection: @connection)
+    end
+
     def binaries
       collection_data = []
 
@@ -163,6 +183,7 @@ module OpenBuildServiceAPI
 
     def reload!
       @meta_reload = true
+      @sources_reload = true
     end
   end
 end

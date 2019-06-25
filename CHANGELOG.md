@@ -6,6 +6,7 @@
 - Added `#repositories` method to `Project` model to list all build repositories
 - Added `#binaries` method to `Package` model to list all built binaries
 - Added `#run_service!` method to `Package` model to trigger remote services
+- Added `#sources` method to `Package` model to retrieve sources of a package container
 
 ## Version: 0.2.0 (alpha)
 
