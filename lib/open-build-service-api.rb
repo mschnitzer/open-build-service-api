@@ -19,6 +19,7 @@ require_relative 'helpers/binary_helper'
 
 # Collections
 require_relative 'collections/abstract_collection'
+require_relative 'collections/binaries_collection'
 require_relative 'collections/packages_collection'
 
 # Models

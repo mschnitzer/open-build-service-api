@@ -51,7 +51,7 @@ module OpenBuildServiceAPI
     end
 
     def binaries
-      result = []
+      collection_data = []
 
       @project.repositories.each do |repository|
         binary_data = { repository: repository, binaries: [] }
@@ -87,10 +87,10 @@ module OpenBuildServiceAPI
           end
         end
 
-        result << binary_data unless binary_data[:binaries].empty?
+        collection_data << binary_data unless binary_data[:binaries].empty?
       end
 
-      result
+      BinariesCollection.new(data: collection_data, connection: @connection, package: self)
     end
 
     def inspect
