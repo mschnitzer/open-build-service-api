@@ -14,6 +14,6 @@ package = project.packages.find!(ARGV[1])
 package.binaries.each do |binary_list|
   puts binary_list[:repository]
   binary_list[:binaries].each do |binary|
-    puts "  - #{binary[:file_name]} (#{binary[:arch]}) (#{binary[:file_size].pretty}) (#{binary[:created_at]})"
+    puts "  - #{binary.name} (#{binary.architecture}) (#{binary.size.pretty}) (#{binary.created_at})"
   end
 end

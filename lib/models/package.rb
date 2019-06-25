@@ -63,11 +63,18 @@ module OpenBuildServiceAPI
 
             response_xml.xpath('//binarylist/binary').each do |binary|
               file_name = binary.attr('filename')
-              file_size = Filesize.from(binary.attr('size'))
-              created_at = Time.at(binary.attr('mtime').to_i)
+              file_size = binary.attr('size')
+              created_at = binary.attr('mtime').to_i
 
               if BinaryHelper.binary_file?(file_name)
-                binary_data[:binaries] << { file_name: file_name, file_size: file_size, arch: arch, created_at: created_at }
+                binary_data[:binaries] << Binary.new(
+                  name:         file_name,
+                  size:         file_size,
+                  architecture: arch,
+                  created_at:   created_at,
+                  package:      self,
+                  connection:   @connection
+                )
               end
             end
           rescue RequestError => err
