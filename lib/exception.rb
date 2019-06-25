@@ -40,6 +40,7 @@ module OpenBuildServiceAPI
   class PackageDeletionPermissionError < APIError; end
   class PackageAlreadyExistsError < APIError; end
   class PackageNotFoundError < APIError; end
+  class NoSourceServiceDefinedError < APIError; end
 
   # library specific exceptions
   class GeneralError < Exception; end

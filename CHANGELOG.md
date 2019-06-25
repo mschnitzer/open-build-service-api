@@ -5,6 +5,7 @@
 - Added `#dirty?` method to `Package` model to identify if a package needs to be saved
 - Added `#repositories` method to `Project` model to list all build repositories
 - Added `#binaries` method to `Package` model to list all built binaries
+- Added `#run_service!` method to `Package` model to trigger remote services
 
 ## Version: 0.2.0 (alpha)
 

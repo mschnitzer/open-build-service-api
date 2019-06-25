@@ -37,6 +37,20 @@ module OpenBuildServiceAPI
       @description_updated = value
     end
 
+    def run_service!
+      begin
+        @connection.send_request(:post, "/source/#{CGI.escape(@project.name)}/#{CGI.escape(@name)}", cmd: :runservice)
+      rescue RequestError => err
+        if err.error_code == 'not_found' && err.error_summary =~ /no source service defined/
+          raise NoSourceServiceDefinedError.new("Package '#{@name}' in project '#{@project.name}' has no source service defined.")
+        end
+
+        raise
+      end
+
+      true
+    end
+
     def meta(opts = {})
       if !@cached_meta || @meta_reload
         @cached_meta = @connection.send_request(:get, "/source/#{CGI.escape(@project.name)}/#{CGI.escape(@name)}/_meta").body
