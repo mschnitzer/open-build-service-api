@@ -45,4 +45,5 @@ module OpenBuildServiceAPI
   class GeneralError < Exception; end
   class ConnectionError < GeneralError; end
   class InvalidHTTPMethodWithBody < GeneralError; end
+  class InvalidDownloadDirectoryPath < GeneralError; end
 end

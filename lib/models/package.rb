@@ -72,6 +72,7 @@ module OpenBuildServiceAPI
                   size:         file_size,
                   architecture: arch,
                   created_at:   created_at,
+                  repository:   repository,
                   package:      self,
                   connection:   @connection
                 )
