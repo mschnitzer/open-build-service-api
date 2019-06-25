@@ -25,6 +25,29 @@ module OpenBuildServiceAPI
       end
     end
 
+    def repositories
+      collection_data = []
+
+      meta.xpath('//repository').each do |repository|
+        paths = []
+        archs = []
+
+        repository.children.each do |child|
+          if child.is_a?(Nokogiri::XML::Element)
+            if child.name == 'path'
+              paths << { project: child.attr('project'), repository: child.attr('repository') }
+            elsif child.name == 'arch'
+              archs << child.text
+            end
+          end
+        end
+
+        collection_data << Repository.new(name: repository.attr('name'), paths: paths, architectures: archs, connection: @connection, project: self)
+      end
+
+      collection_data
+    end
+
     def delete!(message=nil)
       begin
         @connection.send_request(:delete, "/source/#{CGI.escape(@name)}", comment: message)

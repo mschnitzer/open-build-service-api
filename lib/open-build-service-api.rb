@@ -18,3 +18,4 @@ require_relative 'collections/packages_collection'
 # Models
 require_relative 'models/package'
 require_relative 'models/project'
+require_relative 'models/repository'

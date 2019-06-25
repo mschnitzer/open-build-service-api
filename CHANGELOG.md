@@ -3,6 +3,7 @@
 - Added `#rebuild_failed!` method to `Package` model to rebuild only failed builds
 - Added setter methods for package title and description
 - Added `#dirty?` method to `Package` model to identify if a package needs to be saved
+- Added `#repositories` method to `Project` model to list all build repositories
 
 ## Version: 0.2.0 (alpha)
 
