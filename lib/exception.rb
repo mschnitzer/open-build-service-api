@@ -41,6 +41,7 @@ module OpenBuildServiceAPI
   class PackageAlreadyExistsError < APIError; end
   class PackageNotFoundError < APIError; end
   class NoSourceServiceDefinedError < APIError; end
+  class SourceNotFoundError < APIError; end
 
   # library specific exceptions
   class GeneralError < Exception; end

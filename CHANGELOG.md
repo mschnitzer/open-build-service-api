@@ -2,6 +2,8 @@
 
 - Introduced an `AbstractModel` class where all models inherit from
 - Added `#delete!` method to `Source` model to allow deletion of sources
+- Added `#find`, `#find!`, `#find_by_md5_hash`, and `#find_by_md5_hash!` methods to
+  `SourcesCollection` to find a source by one of its attributes
 
 ## Version: 0.3.0 (alpha)
 
