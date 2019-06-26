@@ -16,6 +16,10 @@ Please use the following links for references:
 - [Wiki](https://github.com/mschnitzer/open-build-service-api/wiki)
 - [Examples](https://github.com/mschnitzer/open-build-service-api/tree/master/examples)
 
+## Contributors
+
+* [Manuel Schnitzer](https://github.com/mschnitzer) [Library Creator]
+
 ## Contribution
 
 Contribution to this library is highly appreciated. You can work on [issues](https://github.com/mschnitzer/open-build-service-api/issues) at any time and open a pull request. Just clone this repository, do your changes, and open a new pull request.
