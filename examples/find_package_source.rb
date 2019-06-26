@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 require_relative '../lib/open-build-service-api'
 
-if ARGV.count < 2
+if ARGV.count < 3
   $stderr.puts "please specify a project, a package, and a source name."
   exit! 1
 end
