@@ -16,11 +16,13 @@ require_relative 'api/projects'
 
 # Helpers
 require_relative 'helpers/binary_helper'
+require_relative 'helpers/request_helper'
 
 # Collections
 require_relative 'collections/abstract_collection'
 require_relative 'collections/binaries_collection'
 require_relative 'collections/packages_collection'
+require_relative 'collections/requests_collection'
 require_relative 'collections/sources_collection'
 
 # Models
@@ -29,4 +31,5 @@ require_relative 'models/binary'
 require_relative 'models/package'
 require_relative 'models/project'
 require_relative 'models/repository'
+require_relative 'models/request'
 require_relative 'models/source'

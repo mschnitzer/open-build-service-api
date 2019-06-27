@@ -25,6 +25,20 @@ module OpenBuildServiceAPI
       end
     end
 
+    def requests
+      response = @connection.send_request(:get, "/search/request?match=(state/@name='declined'+or+state/@name='new'+or+state/@name='review')" \
+                                                "+and+(action/target/@project='#{CGI.escape(@name)}'+or+action/source/@project='#{CGI.escape(@name)}')")
+
+      response_xml = Nokogiri::XML(response.body)
+      collection_data = []
+
+      response_xml.xpath('//request').each do |request|
+        collection_data << RequestHelper.parse_data(request, project: self, connection: @connection)
+      end
+
+      RequestsCollection.new(data: collection_data, project: self, connection: @connection)
+    end
+
     def repositories
       collection_data = []
 

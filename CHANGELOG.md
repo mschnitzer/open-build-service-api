@@ -5,6 +5,7 @@
 - Added `#find`, `#find!`, `#find_by_md5_hash`, and `#find_by_md5_hash!` methods to
   `SourcesCollection` to find a source by one of its attributes
 - Added `#content` method to `Source` model to retrieve a source its content.
+- Added `#requests` method to `Project` model to retrieve all requests of a project
 
 ## Version: 0.3.0 (alpha)
 
