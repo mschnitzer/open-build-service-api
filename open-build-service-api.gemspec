@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
     '*.md'
   ]
 
-  s.add_dependency 'date', '~> 2.0', '>= 2.0.0'
+  s.add_dependency 'date', '>= 2', '< 4'
   s.add_dependency 'forwardable', '~> 1.2', '>= 1.2.0'
   s.add_dependency 'nokogiri', '~> 1.10', '>= 1.10.0'
   s.add_dependency 'filesize', '~> 0.2', '>= 0.2.0'
